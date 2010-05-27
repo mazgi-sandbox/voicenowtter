@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @users.to_xml(:only => [:id, :name, :created_at, :updated_at]) }
+      format.xml  { render :xml => @users.to_xml(
+        :dasherize => false, :only => [:id, :name,
+        :created_at, :updated_at]) }
     end
   end
 
