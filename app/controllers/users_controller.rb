@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @users }
+      format.xml  { render :xml => @users.to_xml(:only => [:id, :name, :created_at, :updated_at]) }
     end
   end
 
@@ -19,7 +19,24 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @user.to_xml(:only => [:id, :name, :created_at, :updated_at]) }
+      format.xml  {
+        xml = Builder::XmlMarkup.new(:indent => 2)
+        xml.instruct! directive_tag=:xml, :encoding=> 'utf-8'
+        render :xml => xml.user {|u|
+          u.id(@user.id)
+          u.name(@user.name)
+          u.statuses {|ss|
+            @user.statuses.each {|stat|
+              ss.status {|s|
+                s.id(stat.id)
+                s.user_id(stat.user_id)
+                s.text(stat.text)
+                s.created_at(stat.created_at)
+              }
+            }
+          }
+        }
+      }
     end
   end
 
