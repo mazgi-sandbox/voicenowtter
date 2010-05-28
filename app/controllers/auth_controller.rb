@@ -1,4 +1,6 @@
 class AuthController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:login]
+
   def login
     if request.post?
       user=User.authenticate(params[:name], params[:password])
