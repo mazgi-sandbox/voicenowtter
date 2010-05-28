@@ -17,7 +17,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    @user = nil
+    id_or_name = params[:id]
+    begin
+      @user = User.find(id_or_name)
+    rescue
+      @user = User.find_by_name(id_or_name)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
