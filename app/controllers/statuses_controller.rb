@@ -1,4 +1,6 @@
 class StatusesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:create]
+
   # GET /statuses
   # GET /statuses.xml
   def index
