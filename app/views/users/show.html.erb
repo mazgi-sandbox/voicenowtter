@@ -29,6 +29,7 @@
 <dt>Tweet</dt>
 <dd>
 <p><%= stat.text %></p>
+<p>GeoTag: <%= stat.get_tag %></p>
 <p><%= stat.created_at %></p>
 <p><%= link_to 'Destroy', stat, :confirm => 'Are you sure?', :method => :delete %></p>
 </dd>
