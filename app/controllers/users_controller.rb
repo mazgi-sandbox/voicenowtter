@@ -39,6 +39,7 @@ class UsersController < ApplicationController
                 s.id(stat.id)
                 s.user_id(stat.user_id)
                 s.text(stat.text)
+                s.geo_tag(stat.get_tag)
                 s.created_at(stat.created_at)
               }
             }
