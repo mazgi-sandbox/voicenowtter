@@ -29,7 +29,7 @@
 <dt>Tweet</dt>
 <dd>
 <p><%= stat.text %></p>
-<!-- <p>GeoTag: <%= (nil==stat.get_tag) ? "" : stat.get_tag %></p> -->
+<p>GeoTag: <%= (nil==stat.geo_tag) ? "" : stat.geo_tag %></p>
 <p><%= stat.created_at %></p>
 <p><%= link_to 'Destroy', stat, :confirm => 'Are you sure?', :method => :delete %></p>
 </dd>
